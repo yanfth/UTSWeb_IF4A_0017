@@ -21,6 +21,15 @@ function hitungTotal() {
   totalHargaDisplay.innerText = "Rp " + total.toLocaleString('id-ID');
 }
 
+function hitungEstimasi() {
+  const harga = parseInt(calcMenu.value);
+  const qty = parseInt(calcQty.value) || 0;
+  const total = harga * qty;
+  
+  // Update teks element HTML (Manipulasi DOM)
+  calcTotal.innerText = "Rp " + total.toLocaleString('id-ID');
+}
+
 // Event Listener untuk Kalkulator
 if (pilihanMenu && jumlahPorsi) {
   pilihanMenu.addEventListener('change', hitungTotal);
