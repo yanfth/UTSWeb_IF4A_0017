@@ -22,6 +22,7 @@ function hitungTotal() {
 }
 
 function hitungEstimasi() {
+
   const harga = parseInt(calcMenu.value);
   const qty = parseInt(calcQty.value) || 0;
   const total = harga * qty;
@@ -57,5 +58,8 @@ filterButtons.forEach(button => {
     });
   }); 
 });
+
+calcMenu.addEventListener('change', hitungEstimasi);
+calcQty.addEventListener('input', hitungEstimasi);
 
 // Selesai! Kode duplikat di bawah baris ini yang sebelumnya error sudah dihapus bersih.
