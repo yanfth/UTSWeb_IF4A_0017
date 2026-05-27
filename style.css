@@ -167,3 +167,6 @@ body {
   border-color: #22c55e !important;
   box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2) !important;
 }
+.menu-item.hide {
+  display: none !important;
+}
