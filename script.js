@@ -5,6 +5,9 @@ const totalHargaDisplay = document.getElementById('calc-total') || document.getE
 
 const filterButtons = document.querySelectorAll('.btn-filter');
 const menuItems = document.querySelectorAll('.menu-item');
+const calcMenu = document.getElementById('calc-menu');
+const calcQty = document.getElementById('calc-qty');
+const calcTotal = document.getElementById('calc-total');
 
 
 // === 2. LOGIKA FITUR KALKULATOR TOTAL ORDER ===
