@@ -581,33 +581,41 @@
   </section>
   <!-- End Contact section -->
 
-  <!-- Order Section -->
-  <section id="Order" style="background-color: #f9f9f9; padding: 80px 0;">
-    <div class="container text-center">
-      <h2 style="font-weight: 700;">Hitung Simulasi Pesanan</h2>
-      <div class="mx-auto mt-4"
-        style="max-width: 400px; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+  <!-- Section 6: Order Section (Kalkulator DOM) -->
+  <section id="Order" style="background-color: #1a1a1a; padding: 80px 0;">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <span
+          style="background-color: #22c55e; color: #1a1a1a; padding: 6px 20px; border-radius: 50px; font-size: 0.9rem; font-weight: 500;">Hitung
+          Harga</span>
+        <h2 style="font-size: 2.5rem; font-weight: 700; margin-top: 16px; color: #fff;">Simulasi <span
+            style="color: #22c55e;">Total Pesanan</span></h2>
+      </div>
 
-        <div class="mb-3 text-start">
-          <label class="form-label">Pilih Paket Penyetan</label>
-          <select id="pilihan-menu" class="form-select">
-            <option value="20000">Paket Ayam Penyet - Rp 20.000</option>
-            <option value="18000">Paket Lele Penyet - Rp 18.000</option>
-            <option value="25000">Paket Bebek Goreng - Rp 25.000</option>
-          </select>
+      <div class="mx-auto" style="max-width: 500px;" data-aos="zoom-in">
+        <div style="background: #2b2b2b; padding: 40px; border-radius: 20px;">
+          <div class="mb-3">
+            <label class="form-label style-label" style="color: #fff;">Pilih Menu Utama</label>
+            <select id="calc-menu" class="form-select custom-select-dark">
+              <option value="20000">Paket Ayam Penyet (Rp 20.000)</option>
+              <option value="18000">Paket Lele Penyet (Rp 18.000)</option>
+              <option value="5000">Es Teh Manis Jumbo (Rp 5.000)</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="form-label style-label" style="color: #fff;">Jumlah Porsi</label>
+            <input type="number" id="calc-qty" class="form-control custom-input-dark" value="1" min="1">
+          </div>
+          <hr style="border-color: #444;">
+          <div class="d-flex justify-content-between align-items-center mt-4">
+            <h5 style="color: #aaa; margin: 0;">Estimasi Total:</h5>
+            <h3 style="color: #22c55e; font-weight: 700; margin: 0;" id="calc-total">Rp 20.000</h3>
+          </div>
         </div>
-
-        <div class="mb-3 text-start">
-          <label class="form-label">Jumlah Porsi</label>
-          <input type="number" id="jumlah-porsi" class="form-control" value="1" min="1">
-        </div>
-
-        <hr>
-        <h4 style="font-weight: 600;">Total: <span style="color: #22c55e;" id="total-harga">Rp 20.000</span></h4>
       </div>
     </div>
   </section>
-  <!-- EndOrder Section -->
+  <!-- End Order Section -->
 
 
 
