@@ -12,3 +12,6 @@ function hitungTotal() {
 
 pilihanMenu.addEventListener('change', hitungTotal);
 jumlahPorsi.addEventListener('input', hitungTotal);
+
+const filterButtons = document.querySelectorAll('.btn-filter');
+const menuItems = document.querySelectorAll('.menu-item');
