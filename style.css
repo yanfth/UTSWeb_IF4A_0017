@@ -115,6 +115,11 @@ body {
   transition: all 0.3s ease;
 }
 
+.btn-filter:hover, .btn-filter.active {
+  background-color: #22c55e;
+  color: #1a1a1a;
+}
+
 .btn-menu:hover {
   background-color: #1a1a1a;
   color: #22c55e;
