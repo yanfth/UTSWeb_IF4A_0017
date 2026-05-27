@@ -1,0 +1,20 @@
+body {
+  background-color: #fff;
+}
+
+.navbar-floating {
+  background-color: #2b2b2b;
+  border-radius: 50px;
+  margin: 20px auto;
+  max-width: 700px;
+  padding: 8px 24px;
+  position: relative;
+}
+
+.navbar-brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white !important;
+  font-weight: 500;
+}
