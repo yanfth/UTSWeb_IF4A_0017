@@ -62,4 +62,10 @@ filterButtons.forEach(button => {
 calcMenu.addEventListener('change', hitungEstimasi);
 calcQty.addEventListener('input', hitungEstimasi);
 
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const nama = document.getElementById('form-nama').value;
+  alert('Halo ' + nama + ', pesan Anda berhasil dikirim! Terima kasih.');
+  this.reset();
+});
 // Selesai! Kode duplikat di bawah baris ini yang sebelumnya error sudah dihapus bersih.
