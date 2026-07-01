@@ -1,3 +1,13 @@
+<?php
+require_once "config.php";
+
+$result = mysqli_query($koneksi, "SELECT * FROM produk WHERE status = 'Tersedia' ORDER BY id DESC");
+$produk_list = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $produk_list[] = $row;
+}
+mysqli_close($koneksi);
+?>
 <!doctype html>
 <html lang="en">
 
@@ -8,7 +18,90 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-  <title>Document</title>
+  <title>Penyetan Bu Nur</title>
+  <style>
+    .menu-card {
+      background: #2b2b2b;
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid #333;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-4px);
+      border-color: #22c55e;
+    }
+
+    .menu-badge-kategori {
+      display: inline-block;
+      background: #1a1a1a;
+      color: #22c55e;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 50px;
+      border: 1px solid #22c55e;
+      width: fit-content;
+    }
+
+    .menu-card h6 {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .menu-card p.desc {
+      color: #aaa;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      margin: 0;
+      flex: 1;
+    }
+
+    .menu-card .harga {
+      color: #22c55e;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .menu-card .btn-pesan {
+      display: inline-block;
+      padding: 7px 16px;
+      background: #22c55e;
+      color: #1a1a1a;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      margin-top: 4px;
+      transition: background 0.2s;
+    }
+
+    .menu-card .btn-pesan:hover {
+      background: #1aa34d;
+      color: #1a1a1a;
+    }
+
+    .empty-menu {
+      color: #666;
+      text-align: center;
+      padding: 48px 0;
+      width: 100%;
+    }
+
+    .empty-menu span {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -20,9 +113,7 @@
         <li class="nav-item"><a class="nav-link" href="#Services">Services</a></li>
         <li class="nav-item"><a class="nav-link" href="#Order">Order</a></li>
       </ul>
-
       <a class="navbar-brand" href="#hero">Penyetan Bu Nur</a>
-
       <ul class="navbar-nav d-flex flex-row gap-3 ms-auto" style="padding-right: 20px;">
         <li class="nav-item"><a class="nav-link" href="#Testimonial">Testimonials</a></li>
         <li class="nav-item"><a class="nav-link" href="#FAQ">FAQ</a></li>
@@ -30,6 +121,8 @@
       </ul>
     </div>
   </nav>
+
+  <!-- HERO -->
   <section id="hero">
     <div class="container">
       <div class="row align-items-center">
@@ -58,10 +151,11 @@
       </div>
     </div>
   </section>
+
+  <!-- ABOUT -->
   <section id="About" style="background-color: #1a1a1a; padding: 80px 0;">
     <div class="container">
       <div class="row align-items-center">
-
         <div class="col-lg-6 text-white" data-aos="fade-right">
           <span
             style="background-color: #22c55e; color: #1a1a1a; padding: 6px 20px; border-radius: 50px; font-size: 0.9rem; font-weight: 500;">Tentang
@@ -71,15 +165,13 @@
             <span style="color: #22c55e;">Penyetan Bu Nur?</span>
           </h2>
           <p style="color: #aaa; margin-top: 16px; line-height: 1.8;">
-            rumah makan penyetan yang berdiri sejak tahun 1999, telah
-            menyajikan hidangan khas Lamongan dengan cita rasa otentik yang
-            tidak pernah berubah. Setiap hidangan dibuat dengan bahan-bahan
-            segar pilihan dan bumbu rahasia Tradisional.
+            rumah makan penyetan yang berdiri sejak tahun 1999, telah menyajikan hidangan khas Lamongan dengan
+            cita rasa otentik yang tidak pernah berubah. Setiap hidangan dibuat dengan bahan-bahan segar pilihan
+            dan bumbu rahasia Tradisional.
           </p>
           <p style="color: #aaa; line-height: 1.8;">
-            Dengan pengalaman lebih dari 20 years, kami berkomitmen untuk
-            selalu memberikan pelayanan terbaik dan makanan yang lezat
-            untuk setiap pelanggan setia kami.
+            Dengan pengalaman lebih dari 20 years, kami berkomitmen untuk selalu memberikan pelayanan terbaik
+            dan makanan yang lezat untuk setiap pelanggan setia kami.
           </p>
           <div class="row mt-4">
             <div class="col-4 text-center" data-aos="zoom-in" data-aos-delay="100">
@@ -136,13 +228,13 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
+
+  <!-- SERVICES -->
   <section id="Services" style="background-color: #ffffff; padding: 80px 0;">
     <div class="container">
-
       <div class="text-center mb-5" data-aos="fade-up">
         <span
           style="background-color: #22c55e; color: #1a1a1a; padding: 6px 20px; border-radius: 50px; font-size: 0.9rem; font-weight: 500;">Layanan
@@ -154,9 +246,7 @@
           Kami menyediakan berbagai layanan untuk memastikan pengalaman makan yang menyenangkan bagi setiap pelanggan.
         </p>
       </div>
-
       <div class="row g-4 justify-content-center">
-
         <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
           <div
             style="background-color: #f9f9f9; border-radius: 16px; padding: 32px; height: 100%; border: 1px solid #eee;">
@@ -167,12 +257,10 @@
             </div>
             <h5 style="font-weight: 700; color: #1a1a1a;">Makan di Tempat</h5>
             <p style="color: #777; font-size: 0.9rem; line-height: 1.8; margin-top: 10px;">
-              Nikmati hidangan penyetan langsung di tempat kami dengan suasana yang nyaman dan bersih. Cocok untuk makan
-              siang maupun makan malam bersama keluarga.
+              Nikmati hidangan penyetan langsung di tempat kami dengan suasana yang nyaman dan bersih.
             </p>
           </div>
         </div>
-
         <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
           <div
             style="background-color: #1a1a1a; border-radius: 16px; padding: 32px; height: 100%; border: 1px solid #2b2b2b;">
@@ -183,14 +271,12 @@
             </div>
             <h5 style="font-weight: 700; color: #ffffff;">Pesan Antar</h5>
             <p style="color: #aaa; font-size: 0.9rem; line-height: 1.8; margin-top: 10px;">
-              Tidak sempat keluar? Kami melayani pesan antar ke lokasi kamu. Cukup hubungi kami via WhatsApp dan pesanan
-              akan segera diantarkan.
+              Tidak sempat keluar? Kami melayani pesan antar ke lokasi kamu via WhatsApp.
             </p>
             <span
               style="background-color: #22c55e; color: #1a1a1a; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">Populer</span>
           </div>
         </div>
-
         <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
           <div
             style="background-color: #f9f9f9; border-radius: 16px; padding: 32px; height: 100%; border: 1px solid #eee;">
@@ -201,12 +287,10 @@
             </div>
             <h5 style="font-weight: 700; color: #1a1a1a;">Catering Acara</h5>
             <p style="color: #777; font-size: 0.9rem; line-height: 1.8; margin-top: 10px;">
-              Kami melayani catering untuk berbagai acara seperti arisan, ulang tahun, syukuran, hingga acara kantor
-              dengan harga yang terjangkau.
+              Kami melayani catering untuk berbagai acara dengan harga yang terjangkau.
             </p>
           </div>
         </div>
-
         <div class="col-lg-3 col-md-5" data-aos="fade-up" data-aos-delay="100">
           <div
             style="background-color: #f9f9f9; border-radius: 16px; padding: 32px; height: 100%; border: 1px solid #eee;">
@@ -216,12 +300,10 @@
             </div>
             <h5 style="font-weight: 700; color: #1a1a1a;">Paket Nasi Box</h5>
             <p style="color: #777; font-size: 0.9rem; line-height: 1.8; margin-top: 10px;">
-              Tersedia paket nasi box dengan berbagai pilihan lauk penyetan. Cocok untuk pesanan dalam jumlah banyak
-              dengan harga spesial.
+              Tersedia paket nasi box dengan berbagai pilihan lauk, cocok untuk pesanan dalam jumlah banyak.
             </p>
           </div>
         </div>
-
         <div class="col-lg-3 col-md-5" data-aos="fade-up" data-aos-delay="200">
           <div
             style="background-color: #f9f9f9; border-radius: 16px; padding: 32px; height: 100%; border: 1px solid #eee;">
@@ -232,17 +314,17 @@
             </div>
             <h5 style="font-weight: 700; color: #1a1a1a;">Order via WhatsApp</h5>
             <p style="color: #777; font-size: 0.9rem; line-height: 1.8; margin-top: 10px;">
-              Pesan dengan mudah langsung melalui WhatsApp kami. Respon cepat dan proses pemesanan yang simpel tanpa
-              ribet.
+              Pesan dengan mudah langsung melalui WhatsApp kami. Respon cepat dan proses simpel.
             </p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- TESTIMONIAL -->
   <section id="Testimonial" style="background-color: #1a1a1a; padding: 80px 0;">
     <div class="container">
-
       <div class="text-center mb-5" data-aos="fade-up">
         <span
           style="background-color: #22c55e; color: #1a1a1a; padding: 6px 20px; border-radius: 50px; font-size: 0.9rem; font-weight: 500;">Testimoni</span>
@@ -253,20 +335,13 @@
           Ribuan pelanggan sudah mempercayai Penyetan Bu Nur sebagai pilihan makan favorit mereka.
         </p>
       </div>
-
       <div class="row align-items-center" data-aos="fade-up" data-aos-delay="100">
-
         <div class="col-lg-4 mb-5 mb-lg-0">
           <div style="background-color: #2b2b2b; border-radius: 20px; padding: 36px; text-align: center;">
-
             <h1 style="font-size: 5rem; font-weight: 700; color: #ffffff; margin: 0;">4.9</h1>
-            <div style="color: #22c55e; font-size: 1.6rem; margin: 8px 0;">
-              ★★★★★
-            </div>
+            <div style="color: #22c55e; font-size: 1.6rem; margin: 8px 0;">★★★★★</div>
             <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 28px;">Berdasarkan 1.200+ ulasan</p>
-
             <div style="text-align: left;">
-
               <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
                 <span style="color: #aaa; font-size: 0.85rem; width: 20px;">5★</span>
                 <div style="flex: 1; background-color: #3a3a3a; border-radius: 50px; height: 8px;">
@@ -274,7 +349,6 @@
                 </div>
                 <span style="color: #aaa; font-size: 0.85rem; width: 30px;">85%</span>
               </div>
-
               <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
                 <span style="color: #aaa; font-size: 0.85rem; width: 20px;">4★</span>
                 <div style="flex: 1; background-color: #3a3a3a; border-radius: 50px; height: 8px;">
@@ -282,7 +356,6 @@
                 </div>
                 <span style="color: #aaa; font-size: 0.85rem; width: 30px;">10%</span>
               </div>
-
               <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
                 <span style="color: #aaa; font-size: 0.85rem; width: 20px;">3★</span>
                 <div style="flex: 1; background-color: #3a3a3a; border-radius: 50px; height: 8px;">
@@ -290,7 +363,6 @@
                 </div>
                 <span style="color: #aaa; font-size: 0.85rem; width: 30px;">3%</span>
               </div>
-
               <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
                 <span style="color: #aaa; font-size: 0.85rem; width: 20px;">2★</span>
                 <div style="flex: 1; background-color: #3a3a3a; border-radius: 50px; height: 8px;">
@@ -298,7 +370,6 @@
                 </div>
                 <span style="color: #aaa; font-size: 0.85rem; width: 30px;">1%</span>
               </div>
-
               <div style="display: flex; align-items: center; gap: 10px;">
                 <span style="color: #aaa; font-size: 0.85rem; width: 20px;">1★</span>
                 <div style="flex: 1; background-color: #3a3a3a; border-radius: 50px; height: 8px;">
@@ -306,26 +377,20 @@
                 </div>
                 <span style="color: #aaa; font-size: 0.85rem; width: 30px;">1%</span>
               </div>
-
             </div>
           </div>
         </div>
-
         <div class="col-lg-8">
           <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-
             <div class="carousel-inner">
-
               <div class="carousel-item active">
                 <div class="row g-3">
-
                   <div class="col-md-6">
                     <div style="background-color: #2b2b2b; border-radius: 16px; padding: 24px; height: 100%;">
                       <div style="color: #22c55e; font-size: 1.1rem; margin-bottom: 8px;">★★★★★</div>
-                      <p style="color: #ddd; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">
-                        "Penyetannya enak banget! Sambelnya mantap, tidak terlalu pedas tapi rasanya nendang. Harganya
-                        juga sangat terjangkau. Pasti balik lagi!"
-                      </p>
+                      <p style="color: #ddd; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">"Penyetannya
+                        enak banget! Sambelnya mantap, tidak terlalu pedas tapi rasanya nendang. Harganya juga sangat
+                        terjangkau. Pasti balik lagi!"</p>
                       <div style="display: flex; align-items: center; gap: 10px;">
                         <div
                           style="width: 38px; height: 38px; border-radius: 50%; background-color: #22c55e; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #1a1a1a; font-size: 0.9rem;">
@@ -337,14 +402,12 @@
                       </div>
                     </div>
                   </div>
-
                   <div class="col-md-6">
                     <div style="background-color: #2b2b2b; border-radius: 16px; padding: 24px; height: 100%;">
                       <div style="color: #22c55e; font-size: 1.1rem; margin-bottom: 8px;">★★★★★</div>
-                      <p style="color: #ddd; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">
-                        "Sudah langganan lebih dari 5 tahun. Rasa tidak pernah berubah, selalu konsisten enak. Porsinya
-                        juga besar, cocok buat makan siang bareng keluarga."
-                      </p>
+                      <p style="color: #ddd; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">"Sudah langganan
+                        lebih dari 5 tahun. Rasa tidak pernah berubah, selalu konsisten enak. Porsinya juga besar, cocok
+                        buat makan siang bareng keluarga."</p>
                       <div style="display: flex; align-items: center; gap: 10px;">
                         <div
                           style="width: 38px; height: 38px; border-radius: 50%; background-color: #22c55e; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #1a1a1a; font-size: 0.9rem;">
@@ -356,20 +419,16 @@
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
-
               <div class="carousel-item">
                 <div class="row g-3">
-
                   <div class="col-md-6">
                     <div style="background-color: #2b2b2b; border-radius: 16px; padding: 24px; height: 100%;">
                       <div style="color: #22c55e; font-size: 1.1rem; margin-bottom: 8px;">★★★★★</div>
-                      <p style="color: #ddd; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">
-                        "Pesan antar sangat cepat dan makanannya masih panas waktu sampai. Packagingnya rapi.
-                        Recommended banget buat yang mau order dari rumah!"
-                      </p>
+                      <p style="color: #ddd; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">"Pesan antar
+                        sangat cepat dan makanannya masih panas waktu sampai. Packagingnya rapi. Recommended banget buat
+                        yang mau order dari rumah!"</p>
                       <div style="display: flex; align-items: center; gap: 10px;">
                         <div
                           style="width: 38px; height: 38px; border-radius: 50%; background-color: #22c55e; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #1a1a1a; font-size: 0.9rem;">
@@ -381,14 +440,12 @@
                       </div>
                     </div>
                   </div>
-
                   <div class="col-md-6">
                     <div style="background-color: #2b2b2b; border-radius: 16px; padding: 24px; height: 100%;">
                       <div style="color: #22c55e; font-size: 1.1rem; margin-bottom: 8px;">★★★★☆</div>
-                      <p style="color: #ddd; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">
-                        "Catering untuk acara arisan keluarga besar sangat memuaskan. Semua tamu suka, banyak yang nanya
-                        pesan dimana. Terima kasih Bu Nur!"
-                      </p>
+                      <p style="color: #ddd; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">"Catering untuk
+                        acara arisan keluarga besar sangat memuaskan. Semua tamu suka, banyak yang nanya pesan dimana.
+                        Terima kasih Bu Nur!"</p>
                       <div style="display: flex; align-items: center; gap: 10px;">
                         <div
                           style="width: 38px; height: 38px; border-radius: 50%; background-color: #22c55e; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #1a1a1a; font-size: 0.9rem;">
@@ -400,20 +457,16 @@
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
-
               <div class="carousel-item">
                 <div class="row g-3">
-
                   <div class="col-md-6">
                     <div style="background-color: #2b2b2b; border-radius: 16px; padding: 24px; height: 100%;">
                       <div style="color: #22c55e; font-size: 1.1rem; margin-bottom: 8px;">★★★★★</div>
-                      <p style="color: #ddd; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">
-                        "Lele gorengnya crispy banget di luar tapi tetap juicy di dalam. Sambel terasi Bu Nur memang
-                        tidak ada tandingannya. Wajib coba!"
-                      </p>
+                      <p style="color: #ddd; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">"Lele gorengnya
+                        crispy banget di luar tapi tetap juicy di dalam. Sambel terasi Bu Nur memang tidak ada
+                        tandingannya. Wajib coba!"</p>
                       <div style="display: flex; align-items: center; gap: 10px;">
                         <div
                           style="width: 38px; height: 38px; border-radius: 50%; background-color: #22c55e; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #1a1a1a; font-size: 0.9rem;">
@@ -425,14 +478,12 @@
                       </div>
                     </div>
                   </div>
-
                   <div class="col-md-6">
                     <div style="background-color: #2b2b2b; border-radius: 16px; padding: 24px; height: 100%;">
                       <div style="color: #22c55e; font-size: 1.1rem; margin-bottom: 8px;">★★★★★</div>
-                      <p style="color: #ddd; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">
-                        "Sudah coba banyak warung penyetan, tapi Bu Nur tetap juara. Tempe dan tahunya juga enak banget.
-                        Harga sangat bersahabat untuk kantong mahasiswa!"
-                      </p>
+                      <p style="color: #ddd; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">"Sudah coba
+                        banyak warung penyetan, tapi Bu Nur tetap juara. Tempe dan tahunya juga enak banget. Harga
+                        sangat bersahabat untuk kantong mahasiswa!"</p>
                       <div style="display: flex; align-items: center; gap: 10px;">
                         <div
                           style="width: 38px; height: 38px; border-radius: 50%; background-color: #22c55e; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #1a1a1a; font-size: 0.9rem;">
@@ -444,16 +495,16 @@
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
+
+  <!-- CONTACT -->
   <section id="Contact" style="background-color: #f9f9f9; padding: 80px 0;">
     <div class="container">
       <div class="text-center mb-5" data-aos="fade-up">
@@ -463,7 +514,6 @@
         <h2 style="font-size: 2.5rem; font-weight: 700; margin-top: 16px; color: #1a1a1a;">Hubungi <span
             style="color: #22c55e;">Kami</span></h2>
       </div>
-
       <div class="row g-4">
         <div class="col-lg-5" data-aos="fade-right">
           <div style="background: #1a1a1a; color: white; padding: 40px; border-radius: 20px; height: 100%;">
@@ -500,39 +550,67 @@
       </div>
     </div>
   </section>
+
+  <!-- ====== ORDER — DINAMIS DARI DATABASE ====== -->
   <section id="Order" style="background-color: #1a1a1a; padding: 80px 0;">
     <div class="container">
       <div class="text-center mb-5" data-aos="fade-up">
         <span
-          style="background-color: #22c55e; color: #1a1a1a; padding: 6px 20px; border-radius: 50px; font-size: 0.9rem; font-weight: 500;">Hitung
-          Harga</span>
-        <h2 style="font-size: 2.5rem; font-weight: 700; margin-top: 16px; color: #fff;">Simulasi <span
-            style="color: #22c55e;">Total Pesanan</span></h2>
+          style="background-color: #22c55e; color: #1a1a1a; padding: 6px 20px; border-radius: 50px; font-size: 0.9rem; font-weight: 500;">Menu
+          Kami</span>
+        <h2 style="font-size: 2.5rem; font-weight: 700; margin-top: 16px; color: #fff;">
+          Pilihan <span style="color: #22c55e;">Menu Tersedia</span>
+        </h2>
+        <p style="color: #aaa; max-width: 500px; margin: 12px auto 0;">
+          Semua menu di bawah ini siap dipesan. Pesan langsung via WhatsApp kami.
+        </p>
       </div>
 
-      <div class="mx-auto" style="max-width: 500px;" data-aos="zoom-in">
-        <div style="background: #2b2b2b; padding: 40px; border-radius: 20px;">
-          <div class="mb-3">
-            <label class="form-label style-label" style="color: #fff;">Pilih Menu Utama</label>
-            <select id="calc-menu" class="form-select custom-select-dark">
-              <option value="20000">Paket Ayam Penyet (Rp 20.000)</option>
-              <option value="18000">Paket Lele Penyet (Rp 18.000)</option>
-              <option value="5000">Es Teh Manis Jumbo (Rp 5.000)</option>
-            </select>
-          </div>
-          <div class="mb-4">
-            <label class="form-label style-label" style="color: #fff;">Jumlah Porsi</label>
-            <input type="number" id="calc-qty" class="form-control custom-input-dark" value="1" min="1">
-          </div>
-          <hr style="border-color: #444;">
-          <div class="d-flex justify-content-between align-items-center mt-4">
-            <h5 style="color: #aaa; margin: 0;">Estimasi Total:</h5>
-            <h3 style="color: #22c55e; font-weight: 700; margin: 0;" id="calc-total">Rp 20.000</h3>
+      <div class="row g-3" data-aos="fade-up" data-aos-delay="100">
+        <?php if (empty($produk_list)): ?>
+        <div class="empty-menu">
+          <span>🍽️</span>
+          <p style="color: #666; font-size: 0.95rem;">Belum ada menu yang tersedia saat ini.<br>Silakan cek kembali
+            nanti.</p>
+        </div>
+        <?php else: ?>
+        <?php foreach ($produk_list as $i => $p):
+            $delay = ($i % 4 + 1) * 100;
+          ?>
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
+          <div class="menu-card">
+            <div
+              style="width:40px; height:40px; background:#22c55e; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem;">
+              <?php
+                    $icon = '🍱';
+                    if ($p['kategori'] === 'Minuman') $icon = '🥤';
+                    elseif ($p['kategori'] === 'Makanan') $icon = '🍛';
+                    echo $icon;
+                  ?>
+            </div>
+            <div class="menu-badge-kategori">
+              <?= htmlspecialchars($p['kategori']) ?>
+            </div>
+            <h6>
+              <?= htmlspecialchars($p['nama_produk']) ?>
+            </h6>
+            <p class="desc">
+              <?= htmlspecialchars($p['deskripsi'] ?: 'Hidangan lezat khas Penyetan Bu Nur.') ?>
+            </p>
+            <div class="harga">Rp
+              <?= number_format($p['harga'], 0, ',', '.') ?>
+            </div>
+            <a href="https://wa.me/6281234567890?text=Halo+Bu+Nur,+saya+ingin+memesan+<?= urlencode($p['nama_produk']) ?>"
+              target="_blank" class="btn-pesan">🛒 Pesan via WA</a>
           </div>
         </div>
+        <?php endforeach; ?>
+        <?php endif; ?>
       </div>
     </div>
   </section>
+
+  <!-- FAQ -->
   <section id="FAQ" style="background-color: #ffffff; padding: 80px 0;">
     <div class="container" style="max-width: 800px;">
       <div class="text-center mb-5" data-aos="fade-up">
@@ -541,7 +619,6 @@
         <h2 style="font-size: 2.5rem; font-weight: 700; margin-top: 16px; color: #1a1a1a;">Sering <span
             style="color: #22c55e;">Ditanyakan</span></h2>
       </div>
-
       <div class="d-flex flex-column gap-3">
         <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
           <div class="faq-header d-flex justify-content-between align-items-center"
@@ -556,7 +633,6 @@
             cita rasa pedas yang otentik dan kesegaran maksimal.
           </div>
         </div>
-
         <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
           <div class="faq-header d-flex justify-content-between align-items-center"
             style="cursor: pointer; padding: 20px; background: #f9f9f9; border-radius: 12px;">
@@ -573,6 +649,8 @@
       </div>
     </div>
   </section>
+
+  <!-- FOOTER -->
   <footer style="background-color: #1a1a1a; color: #ffffff; padding: 60px 0 20px; border-top: 1px solid #2b2b2b;">
     <div class="container">
       <div class="row g-4">
@@ -582,8 +660,7 @@
             <h4 style="font-weight: 700; margin: 0; color: #22c55e;">Penyetan Bu Nur</h4>
           </div>
           <p style="color: #aaa; font-size: 0.9rem; line-height: 1.7; max-width: 300px;">
-            Menyajikan hidangan penyetan khas Lamongan dengan cita rasa otentik, bumbu rahasia tradisional, dan harga
-            yang ramah di kantong sejak tahun 1999.
+            Menyajikan hidangan penyetan khas Lamongan dengan cita rasa otentik sejak tahun 1999.
           </p>
         </div>
         <div class="col-lg-4 col-md-6">
@@ -611,27 +688,23 @@
       <hr style="border-color: #333; margin: 40px 0 20px;">
       <div class="row">
         <div class="col-md-6 text-center text-md-start">
-          <p style="color: #777; font-size: 0.85rem; margin: 0;">
-            &copy; 2026 Rumah Makan Penyetan Bu Nur. All rights reserved.
-          </p>
+          <p style="color: #777; font-size: 0.85rem; margin: 0;">&copy; 2026 Rumah Makan Penyetan Bu Nur. All rights
+            reserved.</p>
         </div>
         <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
-          <p style="color: #777; font-size: 0.85rem; margin: 0;">
-            Designed with <span style="color: #22c55e;">❤</span> for Informatics Project.
-          </p>
+          <p style="color: #777; font-size: 0.85rem; margin: 0;">Designed with <span style="color: #22c55e;">❤</span>
+            for Informatics Project.</p>
         </div>
       </div>
     </div>
   </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmFxFTXz/kMEQqNOhRCGqgnLFiKCChM"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 800,
-      once: true
-    });
+    AOS.init({ duration: 800, once: true });
   </script>
   <script src="script.js"></script>
 </body>
