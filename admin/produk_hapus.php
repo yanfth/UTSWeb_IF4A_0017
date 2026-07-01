@@ -1,8 +1,4 @@
 <?php
-// =========================================================
-// admin/produk_hapus.php
-// Menghapus data produk berdasarkan id (DELETE)
-// =========================================================
 require_once "auth.php";
 require_once "../config.php";
 

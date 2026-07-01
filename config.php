@@ -1,9 +1,4 @@
 <?php
-// =========================================================
-// config.php
-// Koneksi ke database MySQL menggunakan mysqli (native PHP)
-// =========================================================
-
 $DB_HOST = "localhost";
 $DB_USER = "root";
 $DB_PASS = "";

@@ -1,29 +1,25 @@
 <?php
-// =========================================================
-// admin/dashboard.php
-// Halaman utama admin setelah login
-// =========================================================
 require_once "auth.php";
 require_once "../config.php";
 
 $active = "dashboard";
 
-// Statistik sederhana
 $totalProduk = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM produk"))['total'];
 $totalTersedia = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM produk WHERE status='Tersedia'"))['total'];
 $totalHabis = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM produk WHERE status='Habis'"))['total'];
 
-// 5 produk terbaru
 $produkTerbaru = mysqli_query($koneksi, "SELECT * FROM produk ORDER BY created_at DESC LIMIT 5");
 ?>
 <!doctype html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard Admin - Penyetan Bu Nur</title>
   <link rel="stylesheet" href="admin-style.css" />
 </head>
+
 <body>
   <div class="admin-layout">
     <?php include "sidebar.php"; ?>
@@ -65,7 +61,9 @@ $produkTerbaru = mysqli_query($koneksi, "SELECT * FROM produk ORDER BY created_a
           </thead>
           <tbody>
             <?php if (mysqli_num_rows($produkTerbaru) === 0): ?>
-              <tr><td colspan="4">Belum ada data produk.</td></tr>
+              <tr>
+                <td colspan="4">Belum ada data produk.</td>
+              </tr>
             <?php else: ?>
               <?php while ($row = mysqli_fetch_assoc($produkTerbaru)): ?>
                 <tr>
@@ -86,4 +84,5 @@ $produkTerbaru = mysqli_query($koneksi, "SELECT * FROM produk ORDER BY created_a
     </div>
   </div>
 </body>
+
 </html>
